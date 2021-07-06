@@ -123,3 +123,4 @@ dist
 .env
 .docker
 .devcontainer.json
+dist/
