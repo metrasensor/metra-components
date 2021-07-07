@@ -109,4 +109,4 @@ class BarChart extends LitElement {
   }
 }
 
-customElements.define('bar-chart', BarChart);
+customElements.define('metrix-bar', BarChart);
