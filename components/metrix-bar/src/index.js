@@ -91,7 +91,7 @@ class BarChart extends LitElement {
     };
   }
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-metrix-line no-unused-vars
   firstUpdated(changedProperties) {
     const ctx = this.renderRoot.getElementById(this.elementID).getContext('2d');
     this.chart = new Chart(ctx, {
