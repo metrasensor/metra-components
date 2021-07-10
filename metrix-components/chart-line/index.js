@@ -15,6 +15,9 @@ import {
   Legend,
   Tooltip,
 } from 'chart.js';
+import moment from 'moment';
+
+import { BaseOptions, dataset1, dataset3, timestamps } from '../configs';
 
 Chart.register(
   ArcElement,
@@ -53,33 +56,36 @@ class LineChart extends LitElement {
     this.updatedTime = 1;
     this.data = {
       fill: true,
-      labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6'],
-      datasets: [{
-        data: [12, 19, 3, 5, 2, 22],
-        backgroundColor: 'rgba(220, 53, 69, 1)',
-        borderColor: 'rgba(220, 53, 69, 1)',
-        borderWidth: 2,
-        borderRadius: 10,
-      }],
-    };
-    this.options = {
-      responsive: false,
-      plugins: {
-        legend: {
-          display: false,
+      labels: timestamps.map(n => moment(n).format('HH:mm')),
+      datasets: [
+        {
+          label: 'Maximum',
+          backgroundColor: 'rgba(177, 64, 0, 0.1)',
+          borderColor: '#B46F48',
+          data: dataset1,
+          borderWidth: 1,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          fill: 1,
         },
-      },
-      title: { display: false },
-      scales: {
-        y: {
-          beginAtZero: true,
+        {
+          label: 'Minimum',
+          backgroundColor: 'rgba(0, 147, 156, 0.1)',
+          borderColor: '#79BCC0',
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          borderWidth: 1,
+          data: dataset3,
+          fill: 'start',
         },
-      },
+      ],
     };
+    this.options = BaseOptions;
   }
 
-  // eslint-disable-next-chart-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   firstUpdated(changedProperties) {
+    // call on change properties
     const ctx = this.renderRoot.getElementById(this.elementID).getContext('2d');
     this.chart = new Chart(ctx, {
       type: this.typeChart,
@@ -90,10 +96,9 @@ class LineChart extends LitElement {
   }
 
   render() {
-    return html`
-          <canvas id="${this.elementID}" width="${this.width}" height="${this.height}"></canvas>
-        `;
+    return html`<canvas id="${this.elementID}" width="${this.width}" height="${this.height}"></canvas>`;
   }
 }
 
-customElements.define('line-chart', LineChart);
+// Defined component
+customElements.define('chart-line', LineChart);
