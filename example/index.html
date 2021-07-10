@@ -5,8 +5,15 @@
     <title>Title</title>
   </head>
   <body>
-    <metrix-bar elementID="app" />
-    <script src="../components/metrix-bar/dist/babel-polyfills-nomodule.js"></script>
-    <script src="../components/metrix-bar/dist/index.js"></script>
+    <div>
+      <chart-bar elementID="app"/>
+    </div>
+    <div>
+      <chart-line elementID="line12"/>
+    </div>
+
+    <script src="../dist/chart.esm-1c565d30.js" ></script>
+    <script src="../dist/metrix-components/chart-bar/index.js" type="module"></script>
+    <script src="../dist/metrix-components/chart-line/index.js" type="module"></script>
   </body>
 </html>
