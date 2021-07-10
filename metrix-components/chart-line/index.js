@@ -29,8 +29,8 @@ class LineChart extends LitElement {
       datasets: [
         {
           label: 'Maximum',
-          backgroundColor: 'rgba(177, 64, 0, 0.1)',
-          borderColor: '#B46F48',
+          backgroundColor: 'rgba(253, 126, 20, 0.35)',
+          borderColor: 'rgba(253, 126, 20, 1)',
           data: dataset1,
           borderWidth: 1,
           pointRadius: 1,
@@ -40,8 +40,8 @@ class LineChart extends LitElement {
         },
         {
           label: 'Minimum',
-          backgroundColor: 'rgba(0, 147, 156, 0.1)',
-          borderColor: '#79BCC0',
+          backgroundColor: 'rgba(25, 135, 84, 0.35)',
+          borderColor: 'rgba(25, 135, 84, 1)',
           borderWidth: 1,
           pointRadius: 1,
           pointHoverRadius: 2,
