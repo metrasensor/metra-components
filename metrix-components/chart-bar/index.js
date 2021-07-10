@@ -1,36 +1,5 @@
 import { LitElement, html } from 'lit-element';
-import {
-  Chart,
-  ArcElement,
-  BarElement,
-  BarController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip,
-} from 'chart.js';
-
-Chart.register(
-  ArcElement,
-  BarElement,
-  BarController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip,
-);
+import Chart from 'chart.js/auto';
 
 class BarChart extends LitElement {
   static get properties() {
@@ -53,27 +22,29 @@ class BarChart extends LitElement {
     this.updatedTime = 1;
     this.data = {
       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        data: [12, 19, 3, 5, 2, 22],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.75)',
-          'rgba(13, 110, 253, 0.75)',
-          'rgba(255, 193, 7, 0.75)',
-          'rgba(25, 135, 84, 0.75)',
-          'rgba(111, 66, 193, 0.75)',
-          'rgba(255, 159, 64, 0.75)',
-        ],
-        borderColor: [
-          'rgba(220, 53, 69, 1)',
-          'rgba(13, 110, 253, 1)',
-          'rgba(255, 193, 7, 1)',
-          'rgba(25, 135, 84, 1)',
-          'rgba(111, 66, 193, 1)',
-          'rgba(253, 126, 20, 1)',
-        ],
-        borderWidth: 2,
-        borderRadius: 10,
-      }],
+      datasets: [
+        {
+          data: [12, 19, 32, 5, 2, 22],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.75)',
+            'rgba(13, 110, 253, 0.75)',
+            'rgba(255, 193, 7, 0.75)',
+            'rgba(25, 135, 84, 0.75)',
+            'rgba(111, 66, 193, 0.75)',
+            'rgba(255, 159, 64, 0.75)',
+          ],
+          borderColor: [
+            'rgba(220, 53, 69, 1)',
+            'rgba(13, 110, 253, 1)',
+            'rgba(255, 193, 7, 1)',
+            'rgba(25, 135, 84, 1)',
+            'rgba(111, 66, 193, 1)',
+            'rgba(253, 126, 20, 1)',
+          ],
+          borderWidth: 2,
+          borderRadius: 10,
+        },
+      ],
     };
     this.options = {
       responsive: false,
@@ -103,9 +74,7 @@ class BarChart extends LitElement {
   }
 
   render() {
-    return html`
-          <canvas id="${this.elementID}" width="${this.width}" height="${this.height}"></canvas>
-        `;
+    return html` <canvas id="${this.elementID}" width="${this.width}" height="${this.height}"></canvas> `;
   }
 }
 

@@ -18,10 +18,12 @@ const filesizeConfig = {
 // Copy base components
 const copyConfig = {
   targets: [
-    { src: 'node_modules/@webcomponents', dest: 'build-universal/node_modules' },
-    { src: 'node_modules/systemjs/dist/s.min.js', dest: 'build-universal/node_modules/systemjs/dist' },
+    { src: 'node_modules/@webcomponents', dest: 'node_modules' },
+    { src: 'node_modules/systemjs/dist/s.min.js', dest: 'node_modules/systemjs/dist' },
   ],
 };
+
+console.log(process.env.NODE_ENV);
 
 // Simple config for build modules
 const configs = [
@@ -32,18 +34,21 @@ const configs = [
       dir: 'dist/',
       format: 'es',
     },
+    plugins: [resolve(), multiInput()],
+  },
+  {
+    input: 'metrix-components/common.js',
+    output: {
+      file: process.env.NODE_ENV !== 'production' ? 'public/dist/common.js' : 'dist/common.js',
+      format: 'es',
+    },
     plugins: [
+      commonjs({ include: ['node_modules/**'] }),
       resolve(),
-      minifyHTML(),
       babel({
         exclude: 'node_modules/**',
       }),
-      copy(copyConfig),
-      multiInput(),
-      commonjs({ include: './node_modules/**' }),
-      uglify(),
     ],
-    preserveEntrySignatures: false,
   },
 ];
 
