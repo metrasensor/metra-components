@@ -2,37 +2,37 @@ import { LitElement, html } from 'lit-element';
 import {
   Chart,
   ArcElement,
-  LineElement,
-  PointElement,
-  LineController,
-  PolarAreaController,
+  BarElement,
+  BarController,
+  CategoryScale,
   LinearScale,
   LogarithmicScale,
-  RadialLinearScale,
-  CategoryScale,
   TimeScale,
   TimeSeriesScale,
+  Decimation,
+  Filler,
   Legend,
+  Title,
   Tooltip,
 } from 'chart.js';
 
 Chart.register(
   ArcElement,
-  LineElement,
-  PointElement,
-  LineController,
-  PolarAreaController,
+  BarElement,
+  BarController,
+  CategoryScale,
   LinearScale,
   LogarithmicScale,
-  RadialLinearScale,
-  CategoryScale,
   TimeScale,
   TimeSeriesScale,
+  Decimation,
+  Filler,
   Legend,
+  Title,
   Tooltip,
 );
 
-class LineChart extends LitElement {
+class BarChart extends LitElement {
   static get properties() {
     return {
       elementID: { attribute: true, type: String },
@@ -49,15 +49,28 @@ class LineChart extends LitElement {
     this.elementID = '';
     this.width = 1280;
     this.height = 400;
-    this.typeChart = 'line';
+    this.typeChart = 'bar';
     this.updatedTime = 1;
     this.data = {
-      fill: true,
-      labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6'],
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
       datasets: [{
         data: [12, 19, 3, 5, 2, 22],
-        backgroundColor: 'rgba(220, 53, 69, 1)',
-        borderColor: 'rgba(220, 53, 69, 1)',
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.75)',
+          'rgba(13, 110, 253, 0.75)',
+          'rgba(255, 193, 7, 0.75)',
+          'rgba(25, 135, 84, 0.75)',
+          'rgba(111, 66, 193, 0.75)',
+          'rgba(255, 159, 64, 0.75)',
+        ],
+        borderColor: [
+          'rgba(220, 53, 69, 1)',
+          'rgba(13, 110, 253, 1)',
+          'rgba(255, 193, 7, 1)',
+          'rgba(25, 135, 84, 1)',
+          'rgba(111, 66, 193, 1)',
+          'rgba(253, 126, 20, 1)',
+        ],
         borderWidth: 2,
         borderRadius: 10,
       }],
@@ -78,7 +91,7 @@ class LineChart extends LitElement {
     };
   }
 
-  // eslint-disable-next-metrix-line no-unused-vars
+  // eslint-disable-next-chart-line no-unused-vars
   firstUpdated(changedProperties) {
     const ctx = this.renderRoot.getElementById(this.elementID).getContext('2d');
     this.chart = new Chart(ctx, {
@@ -96,4 +109,4 @@ class LineChart extends LitElement {
   }
 }
 
-customElements.define('line-chart', LineChart);
+customElements.define('metrix-bar', BarChart);
