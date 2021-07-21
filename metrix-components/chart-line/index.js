@@ -5,6 +5,10 @@ import { timestamps, dataset1, dataset2, dataset3 } from '../configs';
 
 class LineChart extends LitElement {
   static get properties() {
+    /**
+     * Static properties for chart.
+     * If we need to get props from attribute then using `attribute: true`
+     */
     return {
       elementID: { attribute: true, type: String },
       width: { attribute: true, type: Number },
@@ -17,6 +21,9 @@ class LineChart extends LitElement {
   }
 
   constructor() {
+    /**
+     * Set default values for our line chart.
+     */
     super();
     this.elementID = '';
     this.width = 1280;
@@ -127,6 +134,9 @@ class LineChart extends LitElement {
 
   // eslint-disable-next-line no-unused-vars
   firstUpdated(changedProperties) {
+    /**
+     * On first update set new data and draw chart.
+     */
     const ctx = this.renderRoot.getElementById(this.elementID).getContext('2d');
     this.chart = new Chart(ctx, {
       type: this.typeChart,
